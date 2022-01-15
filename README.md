@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v2 # important!
       - uses: EuphoricSystems/action-template-repository-sync@v1
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: true
 ```
 
@@ -64,7 +64,7 @@ jobs:
       - uses: EuphoricSystems/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
       - uses: EuphoricSystems/action-template-repository-sync@v1
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 </details>
