@@ -21,7 +21,7 @@ However, after you "use" the template for first time, the two repositories will 
 
 This action will **automatically** detect all repositories within your account *(user or org)* that has been "initialized" from the template repository *(referred to as "dependents" in this doc)*
 
-> :fire: **NOTE** There is currently a [bug in the GitHub APIs](https://github.com/github/docs/issues/4894) preventing this action from automatically detecting dependent repositories, until this is tis resolved, please use `additional` property in the config file to manually include repositories you want to sync
+> ~~:fire: **NOTE** There is currently a [bug in the GitHub APIs](https://github.com/github/docs/issues/4894) preventing this action from automatically detecting dependent repositories, until this is tis resolved, please use `additional` property in the config file to manually include repositories you want to sync~~
 
 ###### `.github/workflows/template-sync.yml`
 
@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2 # important!
-      - uses: ahmadnassri/action-template-repository-sync@v1
+      - uses: EuphoricSystems/action-template-repository-sync@v1
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           dry-run: true
@@ -60,9 +60,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ahmadnassri/action-workflow-run-wait@v1 # wait for workflow_run to be successful
-      - uses: ahmadnassri/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
-      - uses: ahmadnassri/action-template-repository-sync@v1
+      - uses: EuphoricSystems/action-workflow-run-wait@v1 # wait for workflow_run to be successful
+      - uses: EuphoricSystems/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
+      - uses: EuphoricSystems/action-template-repository-sync@v1
         with:
           github-token: ${{ secrets.GH_TOKEN }}
 ```
@@ -134,20 +134,20 @@ a list of file name patterns to include or exclude
 -   Files on target repos **WILL BE CREATED** if they do not exist
 
 ----
-> Author: [Ahmad Nassri](https://www.ahmadnassri.com/) &bull;
-> Twitter: [@AhmadNassri](https://twitter.com/AhmadNassri)
+> Author: [Chris Young](https://www.linkedin.com/in/christophermyoung/);
+> Twitter: [@ChrisYoung](https://twitter.com/ChrisYoung)
 
 [license-url]: LICENSE
-[license-img]: https://badgen.net/github/license/ahmadnassri/action-template-repository-sync
+[license-img]: https://badgen.net/github/license/EuphoricSystems/action-template-repository-sync
 
-[release-url]: https://github.com/ahmadnassri/action-template-repository-sync/releases
-[release-img]: https://badgen.net/github/release/ahmadnassri/action-template-repository-sync
+[release-url]: https://github.com/EuphoricSystems/action-template-repository-sync/releases
+[release-img]: https://badgen.net/github/release/EuphoricSystems/action-template-repository-sync
 
-[super-linter-url]: https://github.com/ahmadnassri/action-template-repository-sync/actions?query=workflow%3Asuper-linter
-[super-linter-img]: https://github.com/ahmadnassri/action-template-repository-sync/workflows/super-linter/badge.svg
+[super-linter-url]: https://github.com/EuphoricSystems/action-template-repository-sync/actions?query=workflow%3Asuper-linter
+[super-linter-img]: https://github.com/EuphoricSystems/action-template-repository-sync/workflows/super-linter/badge.svg
 
-[test-url]: https://github.com/ahmadnassri/action-template-repository-sync/actions?query=workflow%3Atest
-[test-img]: https://github.com/ahmadnassri/action-template-repository-sync/workflows/test/badge.svg
+[test-url]: https://github.com/EuphoricSystems/action-template-repository-sync/actions?query=workflow%3Atest
+[test-img]: https://github.com/EuphoricSystems/action-template-repository-sync/workflows/test/badge.svg
 
-[semantic-url]: https://github.com/ahmadnassri/action-template-repository-sync/actions?query=workflow%3Arelease
+[semantic-url]: https://github.com/EuphoricSystems/action-template-repository-sync/actions?query=workflow%3Arelease
 [semantic-img]: https://badgen.net/badge/📦/semantically%20released/blue

@@ -4,9 +4,9 @@
   "version": "0.0.0-semantically-released",
   "description": "Keep projects in sync with the template repository they came from",
   "author": {
-    "name": "Ahmad Nassri",
-    "email": "ahmad@ahmadnassri.com",
-    "url": "https://ahmadnassri.com"
+    "name": "Chris Young",
+    "email": "chris@u4ic.co",
+    "url": "https://www.linkedin.com/in/christophermyoung/"
   },
   "scripts": {
     "test": "tap test --no-coverage",
