@@ -4,7 +4,7 @@ import { inspect } from 'util'
 import { readFile } from 'fs/promises'
 
 // packages
-import globby from 'globby'
+import {globby} from 'globby'
 import micromatch from 'micromatch'
 import core from '@actions/core'
 
