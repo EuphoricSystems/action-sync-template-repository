@@ -15,11 +15,16 @@ inputs:
     default: .github/template-sync.yml
     required: false
 
+  update-strategy:
+      description: The dependent repo update strategy (pull_request | push)
+      default: pull_request
+      required: true
+
   dry-run:
     description: dry-run mode
     default: false
 
 runs:
   using: docker
-  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v1.9
+  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.0
 

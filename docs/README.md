@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2 # important!
-      - uses: euphoricsystems/action-sync-template-repository@v1
+      - uses: euphoricsystems/action-sync-template-repository@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: true
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: euphoricsystems/action-workflow-run-wait@v1 # wait for workflow_run to be successful
       - uses: euphoricsystems/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
-      - uses: euphoricsystems/action-sync-template-repository@v1
+      - uses: euphoricsystems/action-sync-template-repository@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```

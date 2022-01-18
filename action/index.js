@@ -26,11 +26,17 @@ const allowed = [
   'push'
 ]
 
+const allowedStrategy = [
+  'pull_request',
+  'push'
+]
+
 // parse inputs
 const inputs = {
   token: core.getInput('github-token', { required: true }),
   config: core.getInput('config', { required: false }),
-  dry: core.getInput('dry-run', { required: false }) === 'true'
+  dry: core.getInput('dry-run', { required: false }) === 'true',
+  updateStrategy: core.getInput('update-strategy', {required: true})
 }
 
 // error handler
@@ -52,6 +58,11 @@ if (inputs.dry) {
 // exit early: incompatible workflow
 if (!allowed.includes(github.context.eventName)) {
   core.warning(`action ran on incompatible event "${github.context.eventName}", only "${allowed.join('", "')}" are allowed`)
+  process.exit(0)
+}
+
+if (!allowedStrategy.includes(inputs.updateStrategy)) {
+  core.warning(`incompatible updated strategy "${inputs.updateStrategy}", only "${allowedStrategy.join('", "')}" are allowed`)
   process.exit(0)
 }
 
@@ -77,6 +88,6 @@ const localFiles = await files(workspace, options)
 const changedRepositories = await scan(octokit, { repositories, localFiles })
 
 // determine which method to run
-const method = (['pull_request', 'pull_request_target'].includes(github.context.eventName)) ? pull_request : push
+const method = inputs.updateStrategy === 'pull_request' ? pull_request : push
 
 await method(octokit, { changedRepositories, localFiles, inputs })
