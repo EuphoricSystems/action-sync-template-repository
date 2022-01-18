@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "actions-template-repository-sync",
+  "name": "action-sync-template-repository",
   "version": "0.0.0-semantically-released",
   "description": "Keep projects in sync with the template repository they came from",
   "author": {

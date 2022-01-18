@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2 # important!
-      - uses: EuphoricSystems/action-template-repository-sync@v1
+      - uses: euphoricsystems/action-sync-template-repository@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: true
@@ -60,9 +60,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: EuphoricSystems/action-workflow-run-wait@v1 # wait for workflow_run to be successful
-      - uses: EuphoricSystems/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
-      - uses: EuphoricSystems/action-template-repository-sync@v1
+      - uses: euphoricsystems/action-workflow-run-wait@v1 # wait for workflow_run to be successful
+      - uses: euphoricsystems/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
+      - uses: euphoricsystems/action-sync-template-repository@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -138,16 +138,16 @@ a list of file name patterns to include or exclude
 > Twitter: [@ChrisYoung](https://twitter.com/ChrisYoung)
 
 [license-url]: LICENSE
-[license-img]: https://badgen.net/github/license/EuphoricSystems/action-template-repository-sync
+[license-img]: https://badgen.net/github/license/EuphoricSystems/action-sync-template-repository
 
-[release-url]: https://github.com/EuphoricSystems/action-template-repository-sync/releases
-[release-img]: https://badgen.net/github/release/EuphoricSystems/action-template-repository-sync
+[release-url]: https://github.com/EuphoricSystems/action-sync-template-repository/releases
+[release-img]: https://badgen.net/github/release/EuphoricSystems/action-sync-template-repository
 
-[super-linter-url]: https://github.com/EuphoricSystems/action-template-repository-sync/actions?query=workflow%3Asuper-linter
-[super-linter-img]: https://github.com/EuphoricSystems/action-template-repository-sync/workflows/super-linter/badge.svg
+[super-linter-url]: https://github.com/EuphoricSystems/action-sync-template-repository/actions?query=workflow%3Asuper-linter
+[super-linter-img]: https://github.com/EuphoricSystems/action-sync-template-repository/workflows/super-linter/badge.svg
 
-[test-url]: https://github.com/EuphoricSystems/action-template-repository-sync/actions?query=workflow%3Atest
-[test-img]: https://github.com/EuphoricSystems/action-template-repository-sync/workflows/test/badge.svg
+[test-url]: https://github.com/EuphoricSystems/action-sync-template-repository/actions?query=workflow%3Atest
+[test-img]: https://github.com/EuphoricSystems/action-sync-template-repository/workflows/test/badge.svg
 
-[semantic-url]: https://github.com/EuphoricSystems/action-template-repository-sync/actions?query=workflow%3Arelease
+[semantic-url]: https://github.com/EuphoricSystems/action-sync-template-repository/actions?query=workflow%3Arelease
 [semantic-img]: https://badgen.net/badge/📦/semantically%20released/blue
