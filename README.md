@@ -138,16 +138,16 @@ a list of file name patterns to include or exclude
 > Twitter: [@ChrisYoung](https://twitter.com/ChrisYoung)
 
 [license-url]: LICENSE
-[license-img]: https://badgen.net/github/license/EuphoricSystems/action-sync-template-repository
+[license-img]: https://badgen.net/github/license/euphoricsystems/action-sync-template-repository
 
-[release-url]: https://github.com/EuphoricSystems/action-sync-template-repository/releases
-[release-img]: https://badgen.net/github/release/EuphoricSystems/action-sync-template-repository
+[release-url]: https://github.com/euphoricsystems/action-sync-template-repository/releases
+[release-img]: https://badgen.net/github/release/euphoricsystems/action-sync-template-repository
 
-[super-linter-url]: https://github.com/EuphoricSystems/action-sync-template-repository/actions?query=workflow%3Asuper-linter
-[super-linter-img]: https://github.com/EuphoricSystems/action-sync-template-repository/workflows/super-linter/badge.svg
+[super-linter-url]: https://github.com/euphoricsystems/action-sync-template-repository/actions?query=workflow%3Asuper-linter
+[super-linter-img]: https://github.com/euphoricsystems/action-sync-template-repository/workflows/super-linter/badge.svg
 
-[test-url]: https://github.com/EuphoricSystems/action-sync-template-repository/actions?query=workflow%3Atest
-[test-img]: https://github.com/EuphoricSystems/action-sync-template-repository/workflows/test/badge.svg
+[test-url]: https://github.com/euphoricsystems/action-sync-template-repository/actions?query=workflow%3Atest
+[test-img]: https://github.com/euphoricsystems/action-sync-template-repository/workflows/test/badge.svg
 
-[semantic-url]: https://github.com/EuphoricSystems/action-sync-template-repository/actions?query=workflow%3Arelease
+[semantic-url]: https://github.com/euphoricsystems/action-sync-template-repository/actions?query=workflow%3Arelease
 [semantic-img]: https://badgen.net/badge/📦/semantically%20released/blue
