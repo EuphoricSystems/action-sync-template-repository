@@ -7,8 +7,6 @@ import { inspect } from "util";
 import core from "@actions/core";
 import github from "@actions/github";
 import micromatch from "micromatch";
-import {graphql} from "@octokit/graphql";
-// import qraphql, { graphql } from "@octokit/graphql";
 
 const mediaType = {
   previews: ["baptiste"],
@@ -65,7 +63,7 @@ export default async function (octokit, options) {
     results.push(...repositories.nodes)
 
     if(repositories.pageInfo.hasNextPage){
-      // await fetchRepos({results, cursor: repositories.pageInfo.endCursor})
+      await fetchRepos({results, cursor: repositories.pageInfo.endCursor})
     }
 
     return results
