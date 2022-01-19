@@ -26,5 +26,5 @@ inputs:
 
 runs:
   using: docker
-  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.0.2
+  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.1.0
 

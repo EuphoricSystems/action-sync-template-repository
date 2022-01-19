@@ -4,6 +4,8 @@ import { inspect } from 'util'
 // packages
 import core from '@actions/core'
 import github from '@actions/github'
+import {throttling} from "@octokit/plugin-throttling";
+import {Octokit} from "@octokit/core";
 
 // modules
 import config from './lib/config.js'
@@ -12,6 +14,7 @@ import pull_request from './lib/pull_request.js'
 import push from './lib/push.js'
 import repos from './lib/repos.js'
 import scan from './lib/scan.js'
+
 
 const workspace = process.env.GITHUB_WORKSPACE || '/github/workspace'
 
@@ -68,9 +71,30 @@ if (!allowedStrategy.includes(inputs.updateStrategy)) {
 
 // load config
 const options = config({ workspace, path: inputs.config })
-
+const throttledOctokit = Octokit.plugin(throttling)
 // init octokit
-const octokit = github.getOctokit(inputs.token)
+const octokit = new throttledOctokit({
+  auth: inputs.token,
+  throttle:  {
+    onRateLimit: (retryAfter, options, octokit) => {
+      octokit.log.warn(
+        `Request quota exhausted for request ${options.method} ${options.url}`
+      );
+
+      if (options.request.retryCount === 0) {
+        // only retries once
+        octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+    },
+    onAbuseLimit: (retryAfter, options, octokit) => {
+      // does not retry, only logs a warning
+      octokit.log.warn(
+        `Abuse detected for request ${options.method} ${options.url}`
+      );
+    },
+  }
+})
 
 // get dependant repos
 const repositories = await repos(octokit, options)

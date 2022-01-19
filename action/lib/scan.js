@@ -17,11 +17,13 @@ export default async function (octokit, { repositories, localFiles }) {
 
       try {
         // fetch the content from the target repo to compare against it
-        const { data: { content: encoded } } = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+        const foo = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
           owner: github.context.repo.owner,
           repo,
           path
         })
+
+        const { data: { content: encoded } } = foo
 
         // convert to a buffer
         remoteContent = Buffer.from(encoded, 'base64')
