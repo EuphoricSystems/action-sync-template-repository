@@ -11,7 +11,7 @@ However, after you "use" the template for first time, the two repositories will 
 
 This action will **automatically** detect all repositories within your account _(user or org)_ that has been "initialized" from the template repository _(referred to as "dependents" in this doc)_
 
-> ~~:fire: **NOTE** There is currently a [bug in the GitHub APIs](https://github.com/github/docs/issues/4894) preventing this action from automatically detecting dependent repositories, until this is tis resolved, please use `additional` property in the config file to manually include repositories you want to sync~~
+The action uses GitHubs GraphQL to pull repository information.
 
 ###### `.github/workflows/template-sync.yml`
 
@@ -109,15 +109,25 @@ a list of file name patterns to include or exclude
 
 ### Inputs
 
-| input          | required | default                     | description                                  |
-| -------------- | -------- | --------------------------- | -------------------------------------------- |
-| `github-token` | ✔️       | `-`                         | The GitHub token used to call the GitHub API |
-| `config`       | ❌        | `.github/template-sync.yml` | path to config file                          |
-| `dry-run`      | ❌        | `false`                     | toggle info mode (commits wont occur)        |
-
+| input                         | required | default                     | description                                  |
+|-------------------------------| ------- |-----------------------------|----------------------------------------------|
+| `github-token`                | ✔️      | `-`                         | The GitHub token used to call the GitHub API |
+| `config`                      | ❌       | `.github/template-sync.yml` | path to config file                          |
+| `dry-run`                     | ❌       | `false`                     | toggle info mode (commits wont occur)        |
+| `update-strategy` | ✔️      | `pull_request`  | The strategy used to update dependent repos  |
 ## :warning: Operational Logic
 
-- The action will only run on the following event types: 'schedule`, `workflow_dispatch`, `repository_dispatch`, `pull_request`, `release`, `workflow_run`, `push`.
+- The action will only run on the following event types: 
+  - `schedule`
+  - `workflow_dispatch`
+  - `repository_dispatch`
+  - `pull_request`
+  - `release`
+  - `workflow_run`
+  - `push`
+- There are 2 types of update strategy:
+  - pull_request
+  - push
 - The when run in `pull_request`, the action will post post a comment on the the Pull Request with the diff view of files to be changed.
 - The action will look for files under the `GITHUB_WORKSPACE` environment path
 - The action will read file contents **AT RUN TIME** _(so you can run build steps or modify content before running the action if you so wish)_
