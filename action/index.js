@@ -81,17 +81,18 @@ const octokit = new throttledOctokit({
         `Request quota exhausted for request ${options.method} ${options.url}`
       );
 
-      if (options.request.retryCount === 3) {
-        // only retries once
+      if (options.request.retryCount <= 3) {
         core.info(`Retrying after ${retryAfter} seconds!`);
         return true;
       }
     },
-    onAbuseLimit: (retryAfter, options, octokit) => {
+    onAbuseLimit: (retryAfter, options) => {
       // does not retry, only logs a warning
       core.warning(
         `Abuse detected for request ${options.method} ${options.url}`
       );
+      core.info(`Retrying after ${retryAfter} seconds!`);
+      return true;
     },
   }
 })
