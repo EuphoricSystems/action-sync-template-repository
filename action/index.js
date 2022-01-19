@@ -5,6 +5,7 @@ import { inspect } from 'util'
 import core from '@actions/core'
 import github from '@actions/github'
 import {throttling} from "@octokit/plugin-throttling";
+import {retry} from "@octokit/plugin-retry"
 import {Octokit} from "@octokit/core";
 
 // modules
@@ -71,9 +72,11 @@ if (!allowedStrategy.includes(inputs.updateStrategy)) {
 
 // load config
 const options = config({ workspace, path: inputs.config })
-const throttledOctokit = Octokit.plugin(throttling)
+
+const superOctokit = Octokit.plugin(throttling, retry)
+
 // init octokit
-const octokit = new throttledOctokit({
+const octokit = new superOctokit({
   auth: inputs.token,
   throttle:  {
     onRateLimit: (retryAfter, options) => {

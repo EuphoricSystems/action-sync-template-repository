@@ -23,6 +23,7 @@
     "@octokit/core": "^3.5.1",
     "@octokit/graphql": "^4.8.0",
     "@octokit/plugin-throttling": "^3.5.2",
+    "@octokit/plugin-retry": "^3.0.9",
     "diff": "^5.0.0",
     "globby": "^12.2.0",
     "micromatch": "^4.0.4",
