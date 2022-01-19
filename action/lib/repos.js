@@ -122,5 +122,5 @@ export default async function (octokit, options) {
   core.info(`final list of repos includes ${final.length} repositories`);
   if (final.length > 0) core.debug(inspect(final));
 
-  return final;
+  return final.sort();
 }
