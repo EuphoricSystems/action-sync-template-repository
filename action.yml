@@ -16,15 +16,19 @@ inputs:
     required: false
 
   update-strategy:
-      description: The dependent repo update strategy (pull_request | push)
-      default: pull_request
-      required: true
+    description: The dependent repo update strategy (pull_request | push)
+    default: pull_request
+    required: true
+
+  full_repo_name:
+    description: Single repository to update {owner}/{name}
+    required: false
 
   dry-run:
     description: dry-run mode
-    default: false
+    required: false
+    default: "false"
 
 runs:
   using: docker
-  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.2.0
-
+  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.3.0

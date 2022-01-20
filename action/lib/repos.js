@@ -58,17 +58,19 @@ export default async function (octokit, options) {
 
   `;
 
-  async function fetchRepos({results, cursor} = {results: []}) {
-    const { organization: {repositories}} = await octokit.graphql(query, {cursor}    )
-    results.push(...repositories.nodes)
+  async function fetchRepos({ results, cursor } = { results: [] }) {
+    const {
+      organization: { repositories },
+    } = await octokit.graphql(query, { cursor });
+    results.push(...repositories.nodes);
 
-    if(repositories.pageInfo.hasNextPage){
-      await fetchRepos({results, cursor: repositories.pageInfo.endCursor})
+    if (repositories.pageInfo.hasNextPage) {
+      await fetchRepos({ results, cursor: repositories.pageInfo.endCursor });
     }
 
-    return results
+    return results;
   }
-  const all = await fetchRepos()
+  const all = await fetchRepos();
   // const all = await octokit.paginate(api, {
   //   username: github.context.repo.owner,
   //   org: github.context.repo.owner,
