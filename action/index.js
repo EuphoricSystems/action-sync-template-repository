@@ -37,7 +37,7 @@ const inputs = {
   config: core.getInput("config", { required: false }),
   dry: core.getInput("dry-run", { required: false }) === "true",
   updateStrategy: core.getInput("update-strategy", { required: true }),
-  full_repo_name: core.getInput("repo", { required: false }),
+  repo_name: core.getInput("repo_name", { required: false }),
 };
 
 // error handler
@@ -106,9 +106,7 @@ const octokit = new superOctokit({
 });
 
 // get dependant repos
-const repositories = full_repo_name
-  ? [full_repo_name]
-  : await repos(octokit, options);
+const repositories = repo_name ? [repo_name] : await repos(octokit, options);
 
 // exit early: no repos to update
 if (repositories.length === 0) {
