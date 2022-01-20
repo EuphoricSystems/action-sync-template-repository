@@ -104,9 +104,9 @@ const octokit = new superOctokit({
     },
   },
 });
-
 // get dependant repos
-const repositories = repo_name ? [repo_name] : await repos(octokit, options);
+const repositories =
+  repo_name === "" ? await repos(octokit, options) : [repo_name];
 
 // exit early: no repos to update
 if (repositories.length === 0) {

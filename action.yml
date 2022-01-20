@@ -22,6 +22,7 @@ inputs:
 
   repo_name:
     description: Single repository to update without the owner
+    default: ""
     required: false
 
   dry-run:
@@ -31,4 +32,4 @@ inputs:
 
 runs:
   using: docker
-  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.3.1
+  image: docker://ghcr.io/euphoricsystems/action-sync-template-repository:v2.3.2
