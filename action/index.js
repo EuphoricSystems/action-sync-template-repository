@@ -104,6 +104,7 @@ const octokit = new superOctokit({
     },
   },
 });
+const {repo_name} = inputs
 // get dependant repos
 const repositories =
   repo_name === "" ? await repos(octokit, options) : [repo_name];
