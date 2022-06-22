@@ -13,19 +13,19 @@ Keep projects in sync with the template repository they came from
 
 The [Template Repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository) feature is a great way to accelerate creation of new projects.
 
-However, after you "use" the template for first time, the two repositories will forever be out of sync _(any changes made to the template repository will not be reflected in the project repository)_
+However, after you "use" the template for first time, the two repositories will forever be out of sync *(any changes made to the template repository will not be reflected in the project repository)*
 
 </details>
 
 ## Usage
 
-This action will **automatically** detect all repositories within your account _(user or org)_ that has been "initialized" from the template repository _(referred to as "dependents" in this doc)_
+This action will **automatically** detect all repositories within your account *(user or org)* that has been "initialized" from the template repository *(referred to as "dependents" in this doc)*
 
 The action uses GitHubs GraphQL to pull repository information.
 
 ###### `.github/workflows/template-sync.yml`
 
-```yaml
+``` yaml
 on: [push, pull_request]
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
 <details>
   <summary><em>A more practical example</em></summary>
 
-```yaml
+``` yaml
 name: template-sync
 
 on:
@@ -73,7 +73,7 @@ jobs:
 
 ###### `.github/template-sync.yml`
 
-```yaml
+``` yaml
 dependents:
   - "api-*" # include
   - "!lib-*" # exclude
@@ -118,44 +118,47 @@ a list of file name patterns to include or exclude
 ### Inputs
 
 | input             | required | default                     | description                                  |
-| ----------------- | -------- | --------------------------- | -------------------------------------------- |
+|-------------------|----------|-----------------------------|----------------------------------------------|
 | `github-token`    | ✔️       | `-`                         | The GitHub token used to call the GitHub API |
-| `config`          | ❌       | `.github/template-sync.yml` | path to config file                          |
-| `dry-run`         | ❌       | `false`                     | toggle info mode (commits wont occur)        |
+| `config`          | ❌        | `.github/template-sync.yml` | path to config file                          |
+| `dry-run`         | ❌        | `false`                     | toggle info mode (commits wont occur)        |
 | `update-strategy` | ✔️       | `pull_request`              | The strategy used to update dependent repos  |
 
 ## :warning: Operational Logic
 
-- The action will only run on the following event types:
-  - `schedule`
-  - `workflow_dispatch`
-  - `repository_dispatch`
-  - `pull_request`
-  - `release`
-  - `workflow_run`
-  - `push`
-- There are 2 types of update strategy:
-  - pull_request
-  - push
-- The when run in `pull_request`, the action will post post a comment on the the Pull Request with the diff view of files to be changed.
-- The action will look for files under the `GITHUB_WORKSPACE` environment path
-- The action will read file contents **AT RUN TIME** _(so you can run build steps or modify content before running the action if you so wish)_
-- If no config file is present indicating which files to filter, the action will sync **ALL FILES** in the template repository
-- The action will respect **`.gitignore`** files
-- Files on target repos **WILL BE CREATED** if they do not exist
+-   The action will only run on the following event types:
+    -   `schedule`
+    -   `workflow_dispatch`
+    -   `repository_dispatch`
+    -   `pull_request`
+    -   `release`
+    -   `workflow_run`
+    -   `push`
+-   There are 2 types of update strategy:
+    -   pull\_request
+    -   push
+-   The when run in `pull_request`, the action will post post a comment on the the Pull Request with the diff view of files to be changed.
+-   The action will look for files under the `GITHUB_WORKSPACE` environment path
+-   The action will read file contents **AT RUN TIME** *(so you can run build steps or modify content before running the action if you so wish)*
+-   If no config file is present indicating which files to filter, the action will sync **ALL FILES** in the template repository
+-   The action will respect **`.gitignore`** files
+-   Files on target repos **WILL BE CREATED** if they do not exist
 
----
-
+----
 > Author: [Chris Young](https://www.linkedin.com/in/christophermyoung/);
 > Twitter: [@ChrisYoung](https://twitter.com/ChrisYoung)
 
 [license-url]: LICENSE
 [license-img]: https://badgen.net/github/license/euphoricsystems/action-sync-template-repository
+
 [release-url]: https://github.com/euphoricsystems/action-sync-template-repository/releases
 [release-img]: https://badgen.net/github/release/euphoricsystems/action-sync-template-repository
+
 [super-linter-url]: https://github.com/euphoricsystems/action-sync-template-repository/actions?query=workflow%3Asuper-linter
 [super-linter-img]: https://github.com/euphoricsystems/action-sync-template-repository/workflows/super-linter/badge.svg
+
 [test-url]: https://github.com/euphoricsystems/action-sync-template-repository/actions?query=workflow%3Atest
 [test-img]: https://github.com/euphoricsystems/action-sync-template-repository/workflows/test/badge.svg
+
 [semantic-url]: https://github.com/euphoricsystems/action-sync-template-repository/actions?query=workflow%3Arelease
 [semantic-img]: https://badgen.net/badge/📦/semantically%20released/blue
