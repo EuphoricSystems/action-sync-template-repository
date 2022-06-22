@@ -1,15 +1,15 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # ---- super-linter ---- #
   lint:
-    image: github/super-linter:v3
+    image: github/super-linter:v4
     volumes:
       - ./:/tmp/lint
     environment:
-      RUN_LOCAL: 'true'
-      LOG_LEVEL: 'ERROR'
-      MULTI_STATUS: 'false'
+      RUN_LOCAL: "true"
+      LOG_LEVEL: "ERROR"
+      MULTI_STATUS: "false"
 
   # ---- readme generator ---- #
   readme:
@@ -34,5 +34,5 @@ services:
         source: ./action
         target: /action/
     working_dir: /action
-    entrypoint: npm run
+    entrypoint: yarn
     command: test
