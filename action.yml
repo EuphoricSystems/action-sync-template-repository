@@ -20,6 +20,11 @@ inputs:
     default: pull_request
     required: true
 
+  skip-ci:
+    description: "Used to append [skip ci] to the commit message (only for update-strategy:push)"
+    default: "true"
+    required: true
+
   repo_name:
     description: Single repository to update without the owner
     default: ""

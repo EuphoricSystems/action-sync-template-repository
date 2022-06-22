@@ -38,6 +38,7 @@ const inputs = {
   dry: core.getInput("dry-run", { required: false }) === "true",
   updateStrategy: core.getInput("update-strategy", { required: true }),
   repo_name: core.getInput("repo_name", { required: false }),
+  skipCi: core.getInput("skip-ci", { required: true }) === "true",
 };
 
 // error handler

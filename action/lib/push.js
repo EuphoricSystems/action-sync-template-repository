@@ -49,12 +49,15 @@ export default async function (octokit, { changedRepositories, localFiles, input
 
     core.debug(`${repo}: new tree: ${newTree.sha}`)
     core.debug(inspect(newTree))
-
+    let commitMessage = `chore(template): sync with ${github.context.repo.owner}/${github.context.repo.repo}`
+    if(inputs.skipCi){
+      commitMessage+= ' [skip ci]'
+    }
     // Make a new commit with the delta tree
     const { data: newCommit } = await octokit.request('POST /repos/{owner}/{repo}/git/commits', {
       owner: github.context.repo.owner,
       repo,
-      message: `chore(template): sync with ${github.context.repo.owner}/${github.context.repo.repo}`,
+      message: commitMessage,
       tree: newTree.sha,
       parents: [sha]
     })
