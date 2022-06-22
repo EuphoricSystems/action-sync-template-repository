@@ -1,10 +1,10 @@
-FROM node:alpine
+FROM node:18-alpine3.16
 
 RUN mkdir /action
 WORKDIR /action
 
 COPY action ./
 
-RUN npm ci --only=prod
+RUN yarn install --production
 
 ENTRYPOINT ["node", "/action/index.js"]

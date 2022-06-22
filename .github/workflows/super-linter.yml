@@ -1,6 +1,6 @@
 name: super-linter
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
   deduplicate:
@@ -22,8 +22,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: github/super-linter@v3
+      - uses: actions/checkout@v3
+      - uses: github/super-linter@v4
         env:
           LOG_LEVEL: ERROR
           VALIDATE_ALL_CODEBASE: false

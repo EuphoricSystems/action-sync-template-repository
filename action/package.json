@@ -9,6 +9,9 @@
     "url": "https://www.linkedin.com/in/christophermyoung/"
   },
   "scripts": {
+    "bootstrap": "yarn && yarn prepare",
+    "nifo": "rimraf node_modules && yarn",
+    "prepare": "husky install",
     "test": "tap test --no-coverage",
     "test:watch": "tap test --watch",
     "test:ci": "tap test --100",
@@ -18,20 +21,22 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.0",
-    "@octokit/core": "^3.5.1",
-    "@octokit/graphql": "^4.8.0",
-    "@octokit/plugin-throttling": "^3.5.2",
-    "@octokit/plugin-retry": "^3.0.9",
-    "diff": "^5.0.0",
-    "globby": "^13.1.0",
-    "micromatch": "^4.0.4",
-    "yaml": "^1.10.2"
+    "@actions/core": "1.9.0",
+    "@actions/github": "5.0.3",
+    "@octokit/core": "3.6.0",
+    "@octokit/graphql": "4.8.0",
+    "@octokit/plugin-throttling": "3.7.0",
+    "@octokit/plugin-retry": "3.0.9",
+    "diff": "5.1.0",
+    "globby": "13.1.2",
+    "micromatch": "4.0.5",
+    "yaml": "2.1.1"
   },
   "devDependencies": {
-    "@istanbuljs/esm-loader-hook": "^0.1.2",
-    "sinon": "^12.0.1",
-    "tap": "^15.1.6"
+    "@istanbuljs/esm-loader-hook": "0.1.2",
+    "husky": "8.0.1",
+    "rimraf": "3.0.2",
+    "sinon": "14.0.0",
+    "tap": "16.3.0"
   }
 }

@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2 # important!
+      - uses: actions/checkout@v3 # important!
       - uses: euphoricsystems/action-sync-template-repository@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +40,7 @@ on:
   pull_request: # run on pull requests to preview changes before applying
 
   workflow_run: # setup this workflow as a dependency of others
-    workflows: [ test, release ] # don't sync template unless tests and other important workflows have passed
+    workflows: [test, release] # don't sync template unless tests and other important workflows have passed
 
 jobs:
   template-sync:
@@ -49,19 +49,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: euphoricsystems/action-workflow-run-wait@v1 # wait for workflow_run to be successful
       - uses: euphoricsystems/action-workflow-queue@v1 # avoid conflicts, by running this template one at a time
       - uses: euphoricsystems/action-sync-template-repository@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
 </details>
 
->  
+>
 
 > :warning: **HIGHLY RECOMMEND** to set `dry-run: true` for the first time you use this action, inspect the output to confirm if the affected repositories list is what you wanted to commit files to
-
 
 ###### `.github/template-sync.yml`
 
@@ -75,11 +75,11 @@ additional:
   - "!not-this-*" # exclude
 
 files:
-  - ".gitignore"  # include
+  - ".gitignore" # include
   - "!package.json" # exclude
   - "!(package-lock.json|yarn.lock)"
 
-   # you probably want to exclude these files:
+    # you probably want to exclude these files:
   - "!.github/workflows/template-sync.yml"
   - "!.github/template-sync.yml"
 ```
@@ -109,15 +109,16 @@ a list of file name patterns to include or exclude
 
 ### Inputs
 
-| input                         | required | default                     | description                                  |
-|-------------------------------| ------- |-----------------------------|----------------------------------------------|
-| `github-token`                | ✔️      | `-`                         | The GitHub token used to call the GitHub API |
-| `config`                      | ❌       | `.github/template-sync.yml` | path to config file                          |
-| `dry-run`                     | ❌       | `false`                     | toggle info mode (commits wont occur)        |
-| `update-strategy` | ✔️      | `pull_request`  | The strategy used to update dependent repos  |
+| input             | required | default                     | description                                  |
+| ----------------- | -------- | --------------------------- | -------------------------------------------- |
+| `github-token`    | ✔️       | `-`                         | The GitHub token used to call the GitHub API |
+| `config`          | ❌       | `.github/template-sync.yml` | path to config file                          |
+| `dry-run`         | ❌       | `false`                     | toggle info mode (commits wont occur)        |
+| `update-strategy` | ✔️       | `pull_request`              | The strategy used to update dependent repos  |
+
 ## :warning: Operational Logic
 
-- The action will only run on the following event types: 
+- The action will only run on the following event types:
   - `schedule`
   - `workflow_dispatch`
   - `repository_dispatch`

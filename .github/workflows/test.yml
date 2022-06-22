@@ -1,6 +1,6 @@
 name: test
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 defaults:
   run:
@@ -27,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.1.4
-      - run: npm audit --audit-level=critical
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn audit --audit-level=critical
 
   test:
     timeout-minutes: 5
@@ -39,15 +39,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.1.4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ hashFiles('**/package-lock.json') }}
+          key: ${{ hashFiles('**/yarn.json') }}
 
-      - run: npm ci
-      - run: npm run test:ci
+      - run: yarn
+      - run: yarn test:ci
