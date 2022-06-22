@@ -52,8 +52,8 @@ jobs:
               repo: context.repo.repo
             }
 
-            await github.git.deleteRef({ ...repo, ref: tag }).catch(() => {})
-            await github.git.createRef({ ...repo, ref: `refs/${tag}` , sha: process.env.GITHUB_SHA })
+            await github.rest.git.deleteRef({ ...repo, ref: tag }).catch(() => {})
+            await github.rest.git.createRef({ ...repo, ref: `refs/${tag}` , sha: process.env.GITHUB_SHA })
 
   publish:
     needs: release
