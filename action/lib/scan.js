@@ -2,7 +2,7 @@
 import core from '@actions/core'
 import github from '@actions/github'
 
-export default async function (octokit, { repositories, localFiles }) {
+export default async function (octokit, { repositories, localFiles, removalFiles }) {
   // lets store our results in a Map
   const changedRepositories = new Map()
 

@@ -10,12 +10,22 @@ export default async function (octokit, { changedRepositories, localFiles, input
 
   for (const [repo, remoteFiles] of changedRepositories.entries()) {
     for (const path of remoteFiles.keys()) {
+      const content = localFiles.get(path).toString();
+      if (!content) {
+        newContent.push({
+          path,
+          mode: "100644", // TODO fetch current file mode
+          sha: null, // this deletes the file
+        });
+        core.info(`⚠ ${repo}:${path} will be removed`);
+        continue;
+      }
       // add file to update tree
       newContent.push({
         path,
-        content: localFiles.get(path).toString(),
-        mode: '100644' // TODO fetch current file mode
-      })
+        content: content,
+        mode: "100644", // TODO fetch current file mode
+      });
 
       core.info(`⚠ ${repo}:${path} will be updated`)
     }

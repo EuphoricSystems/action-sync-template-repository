@@ -117,10 +117,15 @@ if (repositories.length === 0) {
 }
 
 // load files
-const localFiles = await files(workspace, options);
+const syncFiles = await files(workspace, options.files);
+
+// removal files
+const removalFiles = await files(workspace, options.removals, true);
+
+const localFiles = new Map([...syncFiles, ...removalFiles])
 
 // scan repos
-const changedRepositories = await scan(octokit, { repositories, localFiles });
+const changedRepositories = await scan(octokit, { repositories, localFiles, removalFiles });
 
 // determine which method to run
 const method = inputs.updateStrategy === "pull_request" ? pull_request : push;
