@@ -74,6 +74,11 @@ test('valid config', assert => {
     files: [
       'include-file',
       '!exclude-file'
+    ],
+
+    removals: [
+      'include-file',
+      'include-file2',
     ]
   })
 })
