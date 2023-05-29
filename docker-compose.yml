@@ -3,7 +3,7 @@ version: "3.8"
 services:
   # ---- super-linter ---- #
   lint:
-    image: github/super-linter:v4
+    image: github/super-linter:v5
     volumes:
       - ./:/tmp/lint
     environment:
