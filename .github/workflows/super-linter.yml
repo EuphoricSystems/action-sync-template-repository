@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: github/super-linter@v4
+      - uses: github/super-linter@v5
         env:
           LOG_LEVEL: ERROR
           VALIDATE_ALL_CODEBASE: false
