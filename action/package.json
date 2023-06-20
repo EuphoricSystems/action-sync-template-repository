@@ -36,7 +36,7 @@
     "@istanbuljs/esm-loader-hook": "0.1.2",
     "husky": "8.0.1",
     "rimraf": "3.0.2",
-    "sinon": "14.0.0",
+    "sinon": "15.2.0",
     "tap": "16.3.0"
   }
 }
