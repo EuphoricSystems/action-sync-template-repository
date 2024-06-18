@@ -43,7 +43,7 @@ jobs:
           - version: v${{ needs.release.outputs.release-version-major }}.${{ needs.release.outputs.release-version-minor }}
 
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         with:
           script: |
             const tag = 'tags/${{ matrix.alias.version }}'
